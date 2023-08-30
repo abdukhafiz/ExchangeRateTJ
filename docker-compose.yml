@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+    hostname: exchanger.tj
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - 80:8000
+    volumes:
+      - ./app:/app
+      - ./data/web:/vol/web
+    environment:
+      - SECRET_KEY=django-insecure-w3kc9w6wk^1g&xrq!yj^c4wg%ndx$hp_p$%$y_$kxbwobgtr$c
+      - DEBUG=1
+      - DB_HOST=db
+      - DB_NAME=exchanger_tj_docker
+      - DB_USER=exchanger_tj
+      - DB_PASS=1234
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    platform: linux/x86_64
+    ports:
+      - 3308:3306
+    environment:
+      - MYSQL_DATABASE=exchanger_tj_docker
+      - MYSQL_USER=exchanger_tj
+      - MYSQL_PASSWORD=1234
+      - MYSQL_ROOT_PASSWORD=root1234
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
