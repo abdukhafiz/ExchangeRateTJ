@@ -10,6 +10,7 @@ class Rate(models.Model):
     bank = models.ForeignKey(Bank, on_delete=models.CASCADE)
     type = models.ForeignKey(RateType, on_delete=models.DO_NOTHING, null=True)
     currency = models.ForeignKey(Currency, on_delete=models.DO_NOTHING)
-    rate = models.FloatField(null=False)
+    buy = models.FloatField(null=False)
+    sell = models.FloatField(null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
