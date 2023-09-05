@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 
 from base.submodels.bank import Bank
@@ -12,5 +14,6 @@ class Rate(models.Model):
     currency = models.ForeignKey(Currency, on_delete=models.DO_NOTHING)
     buy = models.FloatField(null=False)
     sell = models.FloatField(null=False)
+    rate_date = models.DateField(default=datetime.today().strftime('%Y-%m-%d'), null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

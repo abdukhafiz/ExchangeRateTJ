@@ -1,9 +1,10 @@
 from django.urls import path
 
-from .views import Test, Alif
+from .views import *
 
 urlpatterns = [
     path('test/', Test.as_view()),
 
     path('alif/', Alif.as_view()),
+    path('nbt/', Nbt.as_view()),
 ]

@@ -1,16 +1,15 @@
 import requests
 
-from parsers.api_parser.base_api_parser import BaseApiParser
+from parsers.base_parser import BaseParser
 
 
-class Alif(BaseApiParser):
+class Alif(BaseParser):
     def __init__(self):
         super().__init__(2, 'https://alif.tj/api/rates')
-        self.__fetch_exchange_rate()
 
-    def __fetch_exchange_rate(self):
+    def _fetch_exchange_rate(self):
         try:
-            response = requests.get(self.rate_api)
+            response = requests.get(self.api_url)
 
             if response.status_code == 200:
                 self.response_json = response.json()
