@@ -7,4 +7,5 @@ urlpatterns = [
 
     path('alif/', Alif.as_view()),
     path('nbt/', Nbt.as_view()),
+    path('eskhata/', Eskhata.as_view()),
 ]

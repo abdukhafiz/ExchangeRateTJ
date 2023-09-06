@@ -9,7 +9,6 @@ class BaseParser:
         self.api_url = api_url
 
         self.currencies = self.__get_currencies()
-        self.response_json = {}
         self.rates = []
 
         self._fetch_exchange_rate()
