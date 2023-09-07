@@ -37,7 +37,7 @@ class Eskhata(BaseParser):
                                 buy = cols[2].text.strip() if cols[2].text.strip() else 0
                                 sell = cols[3].text.strip() if cols[3].text.strip() else 0
 
-                                currency_obj = self.__get_currency(currency)
+                                currency_obj = self._get_currency(currency)
                                 if currency_obj:
                                     self.rates.append({
                                         'type_id': 1,
@@ -51,6 +51,3 @@ class Eskhata(BaseParser):
             return self.rates
         else:
             return 'Soup: no data found'
-
-    def __get_currency(self, code):
-        return next((currency['id'] for currency in self.currencies if currency['name'] == code), 0)

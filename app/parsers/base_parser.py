@@ -40,3 +40,9 @@ class BaseParser:
         if ignore_tjs:
             return Currency.objects.exclude(name='TJS').values()
         return Currency.objects.all().values()
+
+    def _get_currency(self, code, only_id=True):
+        currency = next((currency for currency in self.currencies if currency['name'] == code), 0)
+        if only_id:
+            return currency['id']
+        return currency

@@ -38,13 +38,10 @@ class Spitamen(BaseParser):
                                 'type_id': 1,
                                 'buy': float(buy),
                                 'sell': float(sell),
-                                'currency_id': self.__get_currency(currency),
+                                'currency_id': self._get_currency(currency),
                             }
                         )
 
             if len(self.rates) > 0:
                 self._insert_rate()
             return self.rates
-
-    def __get_currency(self, code):
-        return next((currency['id'] for currency in self.currencies if currency['name'] == code), 0)

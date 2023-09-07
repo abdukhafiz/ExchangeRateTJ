@@ -8,6 +8,7 @@ from parsers.xml.nbt import Nbt as NBT
 from parsers.web_scrap.eskhata import Eskhata as ESKHATA
 from parsers.web_scrap.spitamen import Spitamen as SPITAMEN
 from parsers.api.amonat import Amonat as AMONAT
+from parsers.api.arvand import Arvand as ARVAND
 
 
 class Test(APIView):
@@ -55,5 +56,13 @@ class Amonat(APIView):
     def get(self, request):
         amonat = AMONAT()
         result = amonat.parse_rates()
+
+        return Response(result)
+
+
+class Arvand(APIView):
+    def get(self, request):
+        arvand = ARVAND()
+        result = arvand.parse_rates()
 
         return Response(result)
