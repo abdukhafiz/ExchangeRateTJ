@@ -11,4 +11,5 @@ urlpatterns = [
     path('spitamen/', Spitamen.as_view()),
     path('amonat/', Amonat.as_view()),
     path('arvand/', Arvand.as_view()),
+    path('imon/', Imon.as_view()),
 ]

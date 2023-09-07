@@ -37,13 +37,13 @@ class Eskhata(BaseParser):
                                 buy = cols[2].text.strip() if cols[2].text.strip() else 0
                                 sell = cols[3].text.strip() if cols[3].text.strip() else 0
 
-                                currency_obj = self._get_currency(currency)
-                                if currency_obj:
+                                currency_id = self._get_currency(currency)
+                                if currency_id:
                                     self.rates.append({
                                         'type_id': 1,
                                         'buy': float(buy.replace(',', '.')),
                                         'sell': float(sell.replace(',', '.')),
-                                        'currency_id': currency_obj,
+                                        'currency_id': currency_id,
                                     })
 
             if len(self.rates) > 0:

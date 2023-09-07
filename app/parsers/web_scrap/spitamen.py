@@ -33,14 +33,16 @@ class Spitamen(BaseParser):
                         buy = conversation_td[1]['c-val']
                         sell = conversation_td[2]['c-val']
 
-                        self.rates.append(
-                            {
-                                'type_id': 1,
-                                'buy': float(buy),
-                                'sell': float(sell),
-                                'currency_id': self._get_currency(currency),
-                            }
-                        )
+                        currency_id = self._get_currency(currency)
+                        if currency_id:
+                            self.rates.append(
+                                {
+                                    'type_id': 1,
+                                    'buy': float(buy),
+                                    'sell': float(sell),
+                                    'currency_id': currency_id,
+                                }
+                            )
 
             if len(self.rates) > 0:
                 self._insert_rate()
