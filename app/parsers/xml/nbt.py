@@ -36,7 +36,7 @@ class Nbt(BaseParser):
                     valute_id = int(valute.getAttribute('ID'))
 
                     if valute_id == currency['code']:
-                        rate = valute.getElementsByTagName('Value')[0].firstChild.nodeValue
+                        rate = float(valute.getElementsByTagName('Value')[0].firstChild.nodeValue)
 
                         self.rates.append({
                             'type_id': 2,

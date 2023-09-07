@@ -3,9 +3,9 @@ import requests
 from parsers.base_parser import BaseParser
 
 
-class Alif(BaseParser):
+class Amonat(BaseParser):
     def __init__(self):
-        super().__init__(2, 'https://alif.tj/api/rates')
+        super().__init__(5, 'https://amonatbonk.tj/bitrix/templates/amonatbonk/ajax/ambApi.php')
 
     def _fetch_exchange_rate(self):
         try:
@@ -21,17 +21,17 @@ class Alif(BaseParser):
     def parse_rates(self):
         if self.response_json:
             json = self.response_json
-            rates = json['localRates']
+            rates = json['remittances']
 
             for currency in self.currencies:
-                for item in rates:
-                    if int(currency['code']) == int(item['currencyCode']):
-                        self.rates.append({
-                            'type_id': 1,
-                            'buy': float(item['moneyTransferBuyValue']),
-                            'sell': float(item['moneyTransferTradeValue']),
-                            'currency_id': currency['id'],
-                        })
+                if currency['name'] in rates:
+                    item = rates[currency['name']]
+                    self.rates.append({
+                        'type_id': 1,
+                        'buy': float(item['buy']),
+                        'sell': float(item['sell']),
+                        'currency_id': currency['id'],
+                    })
 
             if len(self.rates) > 0:
                 self._insert_rate()

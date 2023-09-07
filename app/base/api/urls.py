@@ -9,4 +9,5 @@ urlpatterns = [
     path('nbt/', Nbt.as_view()),
     path('eskhata/', Eskhata.as_view()),
     path('spitamen/', Spitamen.as_view()),
+    path('amonat/', Amonat.as_view()),
 ]

@@ -36,8 +36,8 @@ class Spitamen(BaseParser):
                         self.rates.append(
                             {
                                 'type_id': 1,
-                                'buy': buy,
-                                'sell': sell,
+                                'buy': float(buy),
+                                'sell': float(sell),
                                 'currency_id': self.__get_currency(currency),
                             }
                         )
