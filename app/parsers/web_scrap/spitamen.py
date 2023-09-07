@@ -36,12 +36,14 @@ class Spitamen(BaseParser):
                         self.rates.append(
                             {
                                 'type_id': 1,
-                                'currency_id': self.__get_currency(currency),
                                 'buy': buy,
-                                'sell': sell
+                                'sell': sell,
+                                'currency_id': self.__get_currency(currency),
                             }
                         )
 
+            if len(self.rates) > 0:
+                self._insert_rate()
             return self.rates
 
     def __get_currency(self, code):
