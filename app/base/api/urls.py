@@ -12,4 +12,5 @@ urlpatterns = [
     path('amonat/', Amonat.as_view()),
     path('arvand/', Arvand.as_view()),
     path('imon/', Imon.as_view()),
+    path('humo/', Humo.as_view()),
 ]
