@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from parsers.api.alif import Alif as AlifBank
 from parsers.xml.nbt import Nbt as NBT
 from parsers.web_scrap.eskhata import Eskhata as ESKHATA
+from parsers.web_scrap.spitamen import Spitamen as SPITAMEN
 
 
 class Test(APIView):
@@ -37,5 +38,13 @@ class Eskhata(APIView):
     def get(self, request):
         eskhata = ESKHATA()
         result = eskhata.parse_rates()
+
+        return Response(result)
+
+
+class Spitamen(APIView):
+    def get(self, request):
+        spitamen = SPITAMEN()
+        result = spitamen.parse_rates()
 
         return Response(result)
